@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container">
+        <ul class="tabs">
+            <li>选项卡1</li>
+            <li>选项卡2</li>
+            <li>选项卡3</li>
+            <li>选项卡4</li>
+            <li>选项卡5</li>
+        </ul>
+        <span class="line"></span>
+        <ul class="content">
+            <li>内容1</li>
+            <li>内容2</li>
+            <li>内容3</li>
+            <li>内容4</li>
+            <li>内容5</li>
+        </ul>
+    </div>
+    <script src="js/jq_3.4.1.js"></script>
+    <script>
+        let oTabUl = $('.tabs');
+        let oLine = $('.line');
+        let oContentUl = $('.content');
+
+        oTabUl.children().each((_index, li)=>{
+            $(li).data('index', _index);
+        })
+        oTabUl.on('mouseenter','li', function(){
+            oLine.stop(true);
+            oContentUl.children().stop(true);
+            oLine.animate({"left": $(this).position().left},200);
+            oContentUl.children().hide();
+            oContentUl.children().eq($(this).data('index')).slideDown().css('display','flex');
+            
+        });
+    </script>
+</body>
+</html>
